@@ -13,10 +13,10 @@ var initialsButton = document.querySelector("#submit")
 var timerEl;
 var initialsInput;
 var sec = 50;
+var savedScores = JSON.parse(localStorage.getItem("scoreTest"))|| []
+console.log(savedScores)
 // var initials = "";
 
-localStorage.getItem("initials")
-console.log(localStorage.getItem("initials"))
 
 // - Display first question
 questionsArray = [
@@ -104,8 +104,10 @@ var endQuiz = function() {
 
 initialsButton.addEventListener("click", function () {
   var initialsInput = initials.value;
-  localStorage.setItem("initials", initialsInput)
-  localStorage.setItem("scores", sec)
+  savedScores = [...savedScores,{initials:initialsInput, scores:sec}]
+  localStorage.setItem("scoreTest",JSON.stringify(savedScores))
+  // localStorage.setItem("initials", JSON.stringify(initialsInput))
+  // localStorage.setItem("scores", JSON.stringify(sec))
   console.log(initialsInput)
   console.log(sec)
 })
