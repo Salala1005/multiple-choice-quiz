@@ -9,14 +9,11 @@ var feedBack = document.querySelector("#feedback");
 var endScreen = document.querySelector("#end-screen");
 var finalScore = document.querySelector("#final-score");
 var initials = document.querySelector("#initials");
-var initialsButton = document.querySelector("#submit")
+var initialsButton = document.querySelector("#submit");
 var timerEl;
 var initialsInput;
 var sec = 50;
 var savedScores = JSON.parse(localStorage.getItem("scoreTest"))|| []
-console.log(savedScores)
-// var initials = "";
-
 
 // - Display first question
 questionsArray = [
@@ -73,12 +70,10 @@ var showDifferentPages = function (l) {
       answerButton[i].textContent = answerArray[i];
       choices.append(answerButton[i]);
     }
-
     // iterete through button to find if the pressed one is correct
     for (let k = 0; k < questionsArray[l].answers.length; k++) {
       answerButton[k].addEventListener("click", function (event) {
         event.preventDefault();
-
         if (k == questionsArray[l].correctAnswer) {
           feedBack.textContent = "Correct Answer";
         } else {
@@ -98,17 +93,13 @@ var endQuiz = function() {
   timer.textContent = sec;
   finalScore.textContent = sec;
   clearInterval(timerEl);
-
-  
 };
 
+// click submit button
 initialsButton.addEventListener("click", function () {
   var initialsInput = initials.value;
-  savedScores = [...savedScores,{initials:initialsInput, scores:sec}]
+  savedScores = [...savedScores,{initials: initialsInput, scores:sec}]
   localStorage.setItem("scoreTest",JSON.stringify(savedScores))
-  // localStorage.setItem("initials", JSON.stringify(initialsInput))
-  // localStorage.setItem("scores", JSON.stringify(sec))
-  console.log(initialsInput)
-  console.log(sec)
 })
+
 
